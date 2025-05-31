@@ -1,0 +1,36 @@
+﻿@model List<BusinessObjects.Product>
+
+<div class="container mt-4">
+    <h2 class="mb-4">Product List</h2>
+    <a class="btn btn-primary mb-3" href="/Product/Create">+ Create New</a>
+
+    <table class="table table-bordered table-striped align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price ($)</th>
+                <th>Stock</th>
+                <th>Category</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ProductId</td>
+                    <td>@item.ProductName</td>
+                    <td>@item.UnitPrice</td>
+                    <td>@item.UnitsInStock</td>
+                    <td>@item.Category?.CategoryName</td>
+                    <td>
+                        <a class="btn btn-info btn-sm" href="/Product/Details/@item.ProductId">Details</a>
+                        <a class="btn btn-warning btn-sm" href="/Product/Edit/@item.ProductId">Edit</a>
+                        <a class="btn btn-danger btn-sm" href="/Product/Delete/@item.ProductId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,44 @@
+﻿@model BusinessObjects.Product
+@{
+    bool isEdit = Model?.ProductId > 0;
+    string title = isEdit ? "Edit Product" : "Create Product";
+    string action = isEdit ? "Edit" : "Create";
+}
+
+<div class="container mt-4">
+    <h2>@title</h2>
+
+    <form asp-action="@action" method="post">
+        @if (isEdit)
+        {
+            <input type="hidden" asp-for="ProductId" />
+        }
+
+        <div class="mb-3">
+            <label asp-for="ProductName" class="form-label"></label>
+            <input asp-for="ProductName" class="form-control" />
+            <span asp-validation-for="ProductName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="UnitPrice" class="form-label"></label>
+            <input asp-for="UnitPrice" class="form-control" />
+            <span asp-validation-for="UnitPrice" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="UnitsInStock" class="form-label"></label>
+            <input asp-for="UnitsInStock" class="form-control" />
+            <span asp-validation-for="UnitsInStock" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="CategoryId" class="form-label">Category</label>
+            <select asp-for="CategoryId" class="form-select" asp-items="ViewBag.Categories">
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">@title</button>
+        <a href="/Product/Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

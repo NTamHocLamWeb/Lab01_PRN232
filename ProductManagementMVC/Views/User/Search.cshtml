@@ -1,0 +1,50 @@
+﻿@model BusinessObjects.AccountMember
+@{
+    string userId = ViewBag.CurrentSearch as string;
+    bool hasSearched = !string.IsNullOrWhiteSpace(userId);
+    bool found = Model != null;
+}
+
+<div class="container mt-4">
+    <h2>Search User by ID</h2>
+
+    <form method="get" asp-action="Search" class="row mb-4">
+        <div class="col-md-4">
+            <input type="text" name="userId" class="form-control" placeholder="Enter User ID..." value="@userId" />
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+
+    @if (hasSearched)
+    {
+        if (found)
+        {
+            <table class="table table-bordered table-striped">
+                <thead class="table-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Model.MemberId</td>
+                        <td>@Model.FullName</td>
+                        <td>@Model.EmailAddress</td>
+                        <td>@Model.MemberPassword</td>
+                        <td>@Model.MemberRole</td>
+                    </tr>
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-warning">User not found.</div>
+        }
+    }
+</div>
