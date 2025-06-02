@@ -1,0 +1,23 @@
+﻿@model List<BusinessObjects.Category>
+
+<div class="container mt-4">
+    <h2 class="mb-4">Category List</h2>
+
+    <table class="table table-bordered table-striped align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CategoryId</td>
+                    <td>@item.CategoryName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
